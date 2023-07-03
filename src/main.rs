@@ -1,8 +1,11 @@
 use clap::{App, Arg};
 use std::io::{self, Write};
 
+
 fn main() {
-    let matches = App::new("My CLI")
+    let name = env!("CARGO_PKG_NAME");
+
+    let matches = App::new(name) 
         .arg(Arg::with_name("input")
             .required(true)
             .takes_value(true)
@@ -13,12 +16,15 @@ fn main() {
         .get_matches();
 
     loop {
+        println!("Welcome to {}", name); 
         println!("What do you want to do?");
+        println!("------------------------");
         println!("1. Create");
         println!("2. Read");
         println!("3. Update");
         println!("4. Delete");
         println!("0. Exit");
+        println!("------------------------");
         print!("Enter your choice: ");
         io::stdout().flush().unwrap();
         let mut choice = String::new();
